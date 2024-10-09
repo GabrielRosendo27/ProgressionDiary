@@ -1,6 +1,6 @@
 import React from "react";
 
-const ButtonComponent = ({ setData, exerciseInput, pesoInput, seriesInput, dataAtual }) => {
+const ButtonComponent = ({ exerciseInput, pesoInput, seriesInput, dataAtual }) => {
   let dados = {
     exerciseInput,
     pesoInput,
@@ -8,17 +8,9 @@ const ButtonComponent = ({ setData, exerciseInput, pesoInput, seriesInput, dataA
     dataAtual,
   };
 
-  let key = "item 1";
+  let key = 1;
   function salvarDados() {
     localStorage.setItem(key, JSON.stringify(dados));
-    console.log("Salvo");
-    coletarDadosSalvos();
-  }
-  function coletarDadosSalvos() {
-    const TreinoA = JSON.parse(localStorage.getItem(key));
-    console.log("coletado");
-    console.log(TreinoA);
-    setData(TreinoA);
   }
 
   return (
