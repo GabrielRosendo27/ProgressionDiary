@@ -1,23 +1,18 @@
 import React from "react";
-
 const SaveTreinoA = () => {
-  const [data, setData] = React.useState(null);
+  const [item01, setItem01] = React.useState(null);
+  const [item02, setItem02] = React.useState(null);
+  const [item03, setItem03] = React.useState(null);
+  const item1 = JSON.parse(localStorage.getItem("item 1"));
   React.useEffect(() => {
-    const TreinoA = JSON.parse(localStorage.getItem("item 1"));
-    setData(TreinoA);
+    console.log(item1);
+
+    setItem01(item1.exerciseInput);
+    setItem02(item1.pesoInput);
+    setItem03(item1.seriesInput);
   }, []);
-  return (
-    <>
-      {data && (
-        <div>
-          <div>{data.dataAtual}</div>
-          <div>{data.exerciseInput}</div>
-          <div>{data.pesoInput}</div>
-          <div>{data.seriesInput}</div>
-        </div>
-      )}
-    </>
-  );
+
+  return <div>{item1 ? { item01 } && { item02 } && { item03 } : "Data Não Existe"}</div>;
 };
 
 export default SaveTreinoA;

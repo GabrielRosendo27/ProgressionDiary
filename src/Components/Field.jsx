@@ -4,6 +4,7 @@ import HandleChange from "./oth/HandleChange";
 import SaveTreinoA from "./TreinoSalvo.jsx/SaveTreinoA";
 
 const Field = () => {
+  const [data, setData] = React.useState(null);
   const dataAtual = new Date().toLocaleDateString("pt-BR");
 
   return (
@@ -12,9 +13,9 @@ const Field = () => {
         <h2>{dataAtual}</h2>
 
         <br />
-        <HandleChange dataAtual={dataAtual} />
+        <HandleChange dataAtual={dataAtual} setData={setData} />
       </form>
-      <SaveTreinoA />
+      <SaveTreinoA data={data} />
     </div>
   );
 };
