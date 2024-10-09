@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const SaveTreinoA = () => {
-  const TreinoA = JSON.parse(localStorage.getItem("item 1"));
-
-  const itens = {
-    exerciseInput: TreinoA.exerciseInput,
-    pesoInput: TreinoA.pesoInput,
-    seriesInput: TreinoA.seriesInput,
-    dataAtual: TreinoA.dataAtual,
-  };
-  console.log(itens);
+  const [data, setData] = React.useState(null);
+  React.useEffect(() => {
+    const TreinoA = JSON.parse(localStorage.getItem("item 1"));
+    setData(TreinoA);
+  }, []);
   return (
     <>
-      <div>
-        <br />
-        {itens.dataAtual}
-        <br />
-        {itens.exerciseInput} - {itens.pesoInput} - {itens.seriesInput}
-      </div>
+      {data && (
+        <div>
+          <div>{data.dataAtual}</div>
+          <div>{data.exerciseInput}</div>
+          <div>{data.pesoInput}</div>
+          <div>{data.seriesInput}</div>
+        </div>
+      )}
     </>
   );
 };
