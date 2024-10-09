@@ -12,8 +12,8 @@ const ButtonComponent = ({ exerciseInput, pesoInput, seriesInput, dataAtual }) =
     localStorage.setItem(key, JSON.stringify(dados));
     let myItem = JSON.parse(localStorage.getItem(key));
     console.log(myItem);
+    salvarDados();
   }
-  salvarDados();
   return (
     <div>
       <button type="button" onClick={salvarDados}>

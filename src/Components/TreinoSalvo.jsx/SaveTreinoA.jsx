@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const SaveTreinoA = () => {
   const TreinoA = JSON.parse(localStorage.getItem("item 1"));
@@ -9,7 +9,7 @@ const SaveTreinoA = () => {
     seriesInput: TreinoA.seriesInput,
     dataAtual: TreinoA.dataAtual,
   };
-
+  console.log(itens);
   return (
     <>
       <div>

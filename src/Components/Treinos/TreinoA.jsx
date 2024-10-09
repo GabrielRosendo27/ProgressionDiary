@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonComponent from "./oth/ButtonComponent";
+import ButtonComponent from "../oth/ButtonComponent";
 
 const TreinoA = ({ dataAtual }) => {
   const [exerciseInput, setExerciseInput] = React.useState("");

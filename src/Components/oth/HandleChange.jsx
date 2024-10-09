@@ -1,8 +1,8 @@
 import React from "react";
-import TreinoA from "../TreinoA";
-import TreinoB from "../TreinoB";
-import TreinoC from "../TreinoC";
-import TreinoD from "../TreinoD";
+import TreinoA from "../Treinos/TreinoA";
+import TreinoB from "../Treinos/TreinoB";
+import TreinoC from "../Treinos/TreinoC";
+import TreinoD from "../Treinos/TreinoD";
 
 const HandleChange = ({ dataAtual }) => {
   const treinos = {
@@ -11,36 +11,21 @@ const HandleChange = ({ dataAtual }) => {
     c: "Peito e Tríceps",
     d: "Ombro",
   };
-  const [treinoA, setTreinoA] = React.useState(false);
-  const [treinoB, setTreinoB] = React.useState(false);
-  const [treinoC, setTreinoC] = React.useState(false);
-  const [treinoD, setTreinoD] = React.useState(false);
+  const [treino, setTreino] = React.useState("");
   function handleChange({ target }) {
     const optionValue = target.value;
     switch (optionValue) {
       case "a":
-        setTreinoB(false);
-        setTreinoC(false);
-        setTreinoD(false);
-        setTreinoA(true);
+        setTreino("a");
         break;
       case "b":
-        setTreinoA(false);
-        setTreinoC(false);
-        setTreinoD(false);
-        setTreinoB(true);
+        setTreino("b");
         break;
       case "c":
-        setTreinoA(false);
-        setTreinoB(false);
-        setTreinoD(false);
-        setTreinoC(true);
+        setTreino("c");
         break;
       case "d":
-        setTreinoB(false);
-        setTreinoC(false);
-        setTreinoA(false);
-        setTreinoD(true);
+        setTreino("d");
         break;
     }
   }
@@ -53,10 +38,10 @@ const HandleChange = ({ dataAtual }) => {
         <option value="c">{treinos.c}</option>
         <option value="d">{treinos.d}</option>
       </select>
-      <div>{treinoA ? <TreinoA dataAtual={dataAtual} /> : ""}</div>
-      <div>{treinoB ? <TreinoB /> : ""}</div>
-      <div>{treinoC ? <TreinoC /> : ""}</div>
-      <div>{treinoD ? <TreinoD /> : ""}</div>
+      <div>{treino === "a" ? <TreinoA dataAtual={dataAtual} /> : ""}</div>
+      <div>{treino === "b" ? <TreinoB /> : ""}</div>
+      <div>{treino === "c" ? <TreinoC /> : ""}</div>
+      <div>{treino === "d" ? <TreinoD /> : ""}</div>
     </>
   );
 };
