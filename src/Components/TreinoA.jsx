@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonComponent from "./oth/ButtonComponent";
 
-const TreinoA = () => {
+const TreinoA = ({ dataAtual }) => {
   const [exerciseInput, setExerciseInput] = React.useState("");
   const [pesoInput, setPesoInput] = React.useState("");
   const [seriesInput, setSeriesInput] = React.useState("");
@@ -14,7 +14,7 @@ const TreinoA = () => {
       <input type="number" required onChange={(e) => setPesoInput(e.target.value)} />
       <label>Quantas Séries?</label>
       <input type="number" required onChange={(e) => setSeriesInput(e.target.value)} />
-      <ButtonComponent exerciseInput={exerciseInput} pesoInput={pesoInput} seriesInput={seriesInput} />
+      <ButtonComponent exerciseInput={exerciseInput} pesoInput={pesoInput} seriesInput={seriesInput} dataAtual={dataAtual} />
     </div>
   );
 };

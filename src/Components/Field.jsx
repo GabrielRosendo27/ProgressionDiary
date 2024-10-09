@@ -1,16 +1,20 @@
 import React from "react";
 
 import HandleChange from "./oth/HandleChange";
+import SaveTreinoA from "./TreinoSalvo.jsx/SaveTreinoA";
 
 const Field = () => {
-  const dataAtual = new Date();
+  const dataAtual = new Date().toLocaleDateString("pt-BR");
+
   return (
     <div className="form-container">
       <form>
-        <label>{dataAtual.toLocaleDateString("pt-BR")}</label>
+        <h2>{dataAtual}</h2>
+
         <br />
-        <HandleChange />
+        <HandleChange dataAtual={dataAtual} />
       </form>
+      <SaveTreinoA />
     </div>
   );
 };

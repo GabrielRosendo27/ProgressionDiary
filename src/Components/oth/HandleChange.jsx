@@ -4,7 +4,7 @@ import TreinoB from "../TreinoB";
 import TreinoC from "../TreinoC";
 import TreinoD from "../TreinoD";
 
-const HandleChange = () => {
+const HandleChange = ({ dataAtual }) => {
   const treinos = {
     a: "Pernas",
     b: "Costas e Bíceps",
@@ -53,7 +53,7 @@ const HandleChange = () => {
         <option value="c">{treinos.c}</option>
         <option value="d">{treinos.d}</option>
       </select>
-      <div>{treinoA ? <TreinoA /> : ""}</div>
+      <div>{treinoA ? <TreinoA dataAtual={dataAtual} /> : ""}</div>
       <div>{treinoB ? <TreinoB /> : ""}</div>
       <div>{treinoC ? <TreinoC /> : ""}</div>
       <div>{treinoD ? <TreinoD /> : ""}</div>
