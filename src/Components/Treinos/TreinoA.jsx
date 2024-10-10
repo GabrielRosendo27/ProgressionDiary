@@ -1,20 +1,18 @@
 import React from "react";
 import ButtonComponent from "../oth/ButtonComponent";
-
-const TreinoA = ({ dataAtual }) => {
-  const [exerciseInput, setExerciseInput] = React.useState("");
-  const [pesoInput, setPesoInput] = React.useState("");
-  const [seriesInput, setSeriesInput] = React.useState("");
-
+ButtonComponent;
+const TreinoA = ({ setExercise, setPeso, setSeries, handleClick, exerciseStyle, pesoStyle, seriesStyle, salvarData }) => {
   return (
     <div className="exercise-box">
-      <label>Qual Exercício?</label>
-      <input type="text" onChange={(e) => setExerciseInput(e.target.value)} />
-      <label>Quantas o peso?</label>
-      <input type="number" onChange={(e) => setPesoInput(e.target.value)} />
-      <label>Quantas Séries?</label>
-      <input type="number" onChange={(e) => setSeriesInput(e.target.value)} />
-      <ButtonComponent exerciseInput={exerciseInput} pesoInput={pesoInput} seriesInput={seriesInput} dataAtual={dataAtual} />
+      <form>
+        <label>Qual Exercício?</label>
+        <input type="text" required onChange={(e) => setExercise(e.target.value)} style={{ border: exerciseStyle }} />
+        <label>Qual peso?</label>
+        <input type="number" required onChange={(e) => setPeso(e.target.value)} style={{ border: pesoStyle }} />
+        <label>Quantas Séries?</label>
+        <input type="number" required onChange={(e) => setSeries(e.target.value)} style={{ border: seriesStyle }} />
+        <ButtonComponent handleClick={handleClick} />
+      </form>
     </div>
   );
 };

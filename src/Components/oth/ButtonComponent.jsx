@@ -1,31 +1,11 @@
 import React from "react";
-import SavedTreinoA from "../TreinoSalvo/SavedTreinoA";
-const ButtonComponent = ({ exerciseInput, pesoInput, seriesInput, dataAtual }) => {
-  let dados = {
-    exerciseInput,
-    pesoInput,
-    seriesInput,
-    dataAtual,
-  };
 
-  let key = 1;
-  function salvarDados() {
-    localStorage.setItem(key, JSON.stringify(dados));
-  }
-
+const ButtonComponent = ({ handleClick }) => {
   return (
     <>
-      <div>
-        {exerciseInput && pesoInput && seriesInput ? (
-          <button type="button" onClick={salvarDados}>
-            Salvar
-          </button>
-        ) : (
-          <button type="button" disabled>
-            Preencha os campos
-          </button>
-        )}
-      </div>
+      <button onClick={handleClick} className="buttons">
+        salvar
+      </button>
     </>
   );
 };
