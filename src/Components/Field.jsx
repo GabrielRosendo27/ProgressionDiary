@@ -16,7 +16,7 @@ const Field = () => {
   const [exerciseStyle, setExerciseStyle] = React.useState("");
   const [pesoStyle, setPesoStyle] = React.useState("");
   const [seriesStyle, setSeriesStyle] = React.useState("");
-
+  const [inputs, setInputs] = React.useState([]);
   //
   const treinos = {
     a: "Pernas",
@@ -28,6 +28,8 @@ const Field = () => {
     exercise,
     peso,
     series,
+    dataAtual,
+    inputs,
   };
   let key = 1;
   const handleClick = (e) => {
@@ -79,6 +81,15 @@ const Field = () => {
     }
   };
 
+  const adicionarInput = () => {
+    setInputs([...inputs, ""]);
+  };
+  const handleInputChange = (index, value) => {
+    // Atualiza o valor do input específico no array
+    const newInputs = [...inputs];
+    newInputs[index] = value;
+    setInputs(newInputs);
+  };
   return (
     <div className="form-container">
       <h2>{dataAtual}</h2>
@@ -99,6 +110,9 @@ const Field = () => {
           exerciseStyle={exerciseStyle}
           pesoStyle={pesoStyle}
           seriesStyle={seriesStyle}
+          adicionarInput={adicionarInput}
+          handleInputChange={handleInputChange}
+          inputs={inputs}
         />
       )}
       {treino === "b" && <TreinoB />}
@@ -108,7 +122,9 @@ const Field = () => {
       <div>
         {rec ? (
           <div>
+            <p>{rec.dataAtual}</p>
             <p>{rec.exercise}</p>
+            <p>{rec.inputs}</p>
             <p>{rec.peso}</p>
             <p>{rec.series}</p>
           </div>
