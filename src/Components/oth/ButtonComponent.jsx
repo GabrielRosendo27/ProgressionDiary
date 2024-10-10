@@ -1,5 +1,5 @@
 import React from "react";
-
+import SavedTreinoA from "../TreinoSalvo/SavedTreinoA";
 const ButtonComponent = ({ exerciseInput, pesoInput, seriesInput, dataAtual }) => {
   let dados = {
     exerciseInput,
@@ -14,17 +14,19 @@ const ButtonComponent = ({ exerciseInput, pesoInput, seriesInput, dataAtual }) =
   }
 
   return (
-    <div>
-      {exerciseInput && pesoInput && seriesInput ? (
-        <button type="button" onClick={salvarDados}>
-          Salvar
-        </button>
-      ) : (
-        <button type="button" disabled>
-          Preencha os campos
-        </button>
-      )}
-    </div>
+    <>
+      <div>
+        {exerciseInput && pesoInput && seriesInput ? (
+          <button type="button" onClick={salvarDados}>
+            Salvar
+          </button>
+        ) : (
+          <button type="button" disabled>
+            Preencha os campos
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 
