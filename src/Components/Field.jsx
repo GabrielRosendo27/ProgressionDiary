@@ -1,5 +1,7 @@
 import React from "react";
 import TreinosSalvos from "./TreinosSalvos";
+import Treino from "./Treino";
+import Salvos from "./Salvos";
 
 const Field = () => {
   const dataAtual = new Date().toLocaleDateString("pt-BR");
@@ -12,23 +14,6 @@ const Field = () => {
     d: "Ombro",
   };
 
-  const valueOption = ({ target }) => {
-    const optionValue = target.value;
-    switch (optionValue) {
-      case "a":
-        setTreino("a");
-        break;
-      case "b":
-        setTreino("b");
-        break;
-      case "c":
-        setTreino("c");
-        break;
-      case "d":
-        setTreino("d");
-        break;
-    }
-  };
   const currentPageClick = () => {
     setCurrentPage((prevState) => !prevState);
   };
@@ -36,7 +21,7 @@ const Field = () => {
     <div className="container">
       <div className="container-info">
         <TreinosSalvos currentPage={currentPage} currentPageClick={currentPageClick} />
-        <div>{currentPage ? "Treino" : "Salvos"}</div>
+        <div>{currentPage ? <Treino treinos={treinos} /> : <Salvos />}</div>
       </div>
     </div>
   );
