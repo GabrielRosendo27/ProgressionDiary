@@ -31,6 +31,10 @@
   flex-direction: column;
   gap: 10px;
 }
+.treino-container form {
+  display: flex;
+  flex-direction: column;
+}
 .treinoButtons {
   max-width: 150px;
   padding: 4px 8px;
