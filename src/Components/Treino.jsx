@@ -16,27 +16,42 @@ const Treino = ({ treinos }) => {
       setTreino(treinos.d);
     }
   };
-  const [exercise, setExercise] = React.useState(1);
-  const [exerciseValue, setExerciseValue] = React.useState("");
-  const inExercise = ({ target }) => {
-    setExerciseValue(target.value);
+
+  const [exercises, setExercises] = React.useState([{ exercicio: "", kg: "", series: "" }]);
+
+  const inExercise = (index, { target }) => {
+    const { name, value } = target;
+    const updatedExercises = [...exercises];
+    updatedExercises[index][name] = value;
+    setExercises(updatedExercises);
   };
+
   const addExercise = () => {
-    setExercise(exercise + 1);
+    setExercises([...exercises, { exercicio: "", kg: "", series: "" }]);
   };
+
   return (
     <div className="treino-container">
       {treino ? (
         <form>
-          <label>Exercício {exercise}</label>
-          <input type="text" onChange={inExercise} value={exerciseValue} />
-          <label>KG</label>
-          <input type="number" />
-          <label>Nº de Séries</label>
-          <input type="number" />
-          <button type="button" style={{ cursor: "pointer" }} onClick={addExercise}>
+          {exercises.map((exercise, index) => (
+            <div key={index} className="treino-container">
+              <label>Exercício {index + 1}</label>
+              <input type="text" name="exercicio" placeholder="Nome do exercício" value={exercise.exercicio} onChange={(e) => inExercise(index, e)} />
+
+              <label>KG</label>
+              <input type="number" name="kg" placeholder="Peso em kg" value={exercise.kg} onChange={(e) => inExercise(index, e)} />
+
+              <label>Nº de Séries</label>
+              <input type="number" name="series" placeholder="Número de séries" value={exercise.series} onChange={(e) => inExercise(index, e)} />
+            </div>
+          ))}
+
+          <button type="button" onClick={addExercise}>
             Adicionar Exercício
           </button>
+
+          {/* // */}
           <button type="button">Salvar</button>
         </form>
       ) : (
