@@ -1,6 +1,7 @@
 import React from "react";
 
 const Treino = ({ treinos }) => {
+  const [errorMessage, setErrorMessage] = React.useState("");
   const [treino, setTreino] = React.useState(null);
   const treinoSelecionado = ({ target }) => {
     if (target.value === treinos.a) {
@@ -26,8 +27,17 @@ const Treino = ({ treinos }) => {
     setExercises(updatedExercises);
   };
 
+  const checkFields = () => {
+    return exercises.every((exercise) => exercise.exercicio && exercise.kg && exercise.series);
+  };
+
   const addExercise = () => {
+    if (!checkFields()) {
+      setErrorMessage("Preencha todos os campos antes de adicionar um novo exercício.");
+      return;
+    }
     setExercises([...exercises, { exercicio: "", kg: "", series: "" }]);
+    setErrorMessage("");
   };
 
   return (
@@ -46,13 +56,13 @@ const Treino = ({ treinos }) => {
               <input type="number" name="series" placeholder="Número de séries" value={exercise.series} onChange={(e) => inExercise(index, e)} />
             </div>
           ))}
-
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
           <button type="button" onClick={addExercise}>
             Adicionar Exercício
           </button>
 
           {/* // */}
-          <button type="button">Salvar</button>
+          <button type="button">Continuar</button>
         </form>
       ) : (
         <div className="treino-container">
