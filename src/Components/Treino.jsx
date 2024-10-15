@@ -5,6 +5,7 @@ const Treino = ({ treinos }) => {
   const [treino, setTreino] = React.useState(null);
   const [disabledInputs, setDisabledInputs] = React.useState([false]);
   const [isAdd, setIsAdd] = React.useState([false]);
+  const error = "Preencha todos os campos antes de adicionar um novo exercício.";
   const treinoSelecionado = ({ target }) => {
     if (target.value === treinos.a) {
       setTreino(treinos.a);
@@ -35,7 +36,10 @@ const Treino = ({ treinos }) => {
 
   const addExercise = () => {
     if (!checkFields()) {
-      setErrorMessage("Preencha todos os campos antes de adicionar um novo exercício.");
+      setErrorMessage(error);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
       return;
     }
     setExercises([...exercises, { exercicio: "", kg: "", series: "" }]);
@@ -84,13 +88,13 @@ const Treino = ({ treinos }) => {
               />
             </div>
           ))}
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
           <button type="button" onClick={addExercise}>
             Adicionar Exercício
           </button>
-
-          {/* // */}
           <button type="button">Continuar</button>
+
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          {/* // */}
         </form>
       ) : (
         <div className="treino-container">
