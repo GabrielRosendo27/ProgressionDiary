@@ -3,6 +3,7 @@ import React from "react";
 const Treino = ({ treinos }) => {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [treino, setTreino] = React.useState(null);
+  const [disabledInputs, setDisabledInputs] = React.useState([false]);
   const treinoSelecionado = ({ target }) => {
     if (target.value === treinos.a) {
       setTreino(treinos.a);
@@ -37,6 +38,12 @@ const Treino = ({ treinos }) => {
       return;
     }
     setExercises([...exercises, { exercicio: "", kg: "", series: "" }]);
+    setDisabledInputs((prevState) => {
+      const newState = [...prevState];
+      newState[exercises.length - 1] = true; // Desabilita o penúltimo input
+      newState[exercises.length] = false; // Habilita o novo input adicionado
+      return newState;
+    });
     setErrorMessage("");
   };
 
@@ -47,13 +54,27 @@ const Treino = ({ treinos }) => {
           {exercises.map((exercise, index) => (
             <div key={index} className="treino-container">
               <label>Exercício {index + 1}</label>
-              <input type="text" name="exercicio" placeholder="Nome do exercício" value={exercise.exercicio} onChange={(e) => inExercise(index, e)} />
+              <input
+                type="text"
+                disabled={disabledInputs[index]}
+                name="exercicio"
+                placeholder="Nome do exercício"
+                value={exercise.exercicio}
+                onChange={(e) => inExercise(index, e)}
+              />
 
               <label>KG</label>
-              <input type="number" name="kg" placeholder="Peso em kg" value={exercise.kg} onChange={(e) => inExercise(index, e)} />
+              <input type="number" disabled={disabledInputs[index]} name="kg" placeholder="Peso em kg" value={exercise.kg} onChange={(e) => inExercise(index, e)} />
 
               <label>Nº de Séries</label>
-              <input type="number" name="series" placeholder="Número de séries" value={exercise.series} onChange={(e) => inExercise(index, e)} />
+              <input
+                type="number"
+                disabled={disabledInputs[index]}
+                name="series"
+                placeholder="Número de séries"
+                value={exercise.series}
+                onChange={(e) => inExercise(index, e)}
+              />
             </div>
           ))}
           {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
