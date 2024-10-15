@@ -4,6 +4,7 @@ const Treino = ({ treinos }) => {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [treino, setTreino] = React.useState(null);
   const [disabledInputs, setDisabledInputs] = React.useState([false]);
+  const [isAdd, setIsAdd] = React.useState([false]);
   const treinoSelecionado = ({ target }) => {
     if (target.value === treinos.a) {
       setTreino(treinos.a);
@@ -44,6 +45,12 @@ const Treino = ({ treinos }) => {
       newState[exercises.length] = false; // Habilita o novo input adicionado
       return newState;
     });
+    setIsAdd((prevState) => {
+      const newState = [...prevState];
+      newState[exercises.length - 1] = true;
+      newState[exercises.length] = false;
+      return newState;
+    });
     setErrorMessage("");
   };
 
@@ -63,10 +70,10 @@ const Treino = ({ treinos }) => {
                 onChange={(e) => inExercise(index, e)}
               />
 
-              <label>KG</label>
+              <label>{isAdd[index] ? "" : "KG"}</label>
               <input type="number" disabled={disabledInputs[index]} name="kg" placeholder="Peso em kg" value={exercise.kg} onChange={(e) => inExercise(index, e)} />
 
-              <label>Nº de Séries</label>
+              <label>{isAdd[index] ? "" : "Nº de séries"}</label>
               <input
                 type="number"
                 disabled={disabledInputs[index]}
