@@ -5,7 +5,7 @@ const Treino = ({ treinos }) => {
   const [treino, setTreino] = React.useState(null);
   const [disabledInputs, setDisabledInputs] = React.useState([false]);
   const [isAdd, setIsAdd] = React.useState([false]);
-
+  const dataAtual = new Date().toLocaleDateString("pt-BR");
   const error = "Preencha todos os campos antes de adicionar um novo exercício.";
 
   const treinoSelecionado = ({ target }) => {
@@ -60,7 +60,18 @@ const Treino = ({ treinos }) => {
 
     setErrorMessage("");
   };
-
+  const saveButton = () => {
+    if (!checkFields()) {
+      setErrorMessage(error);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
+      return;
+    }
+    exercises.map((i, index) => {
+      console.log(i);
+    });
+  };
   return (
     <div>
       {treino ? (
@@ -91,13 +102,15 @@ const Treino = ({ treinos }) => {
               />
             </div>
           ))}
+          {errorMessage && <p className="paragraph">{errorMessage}</p>}
           <div className="buttons-treino">
             <button type="button" onClick={addExercise}>
               Adicionar Exercício
             </button>
-            <button type="button">Continuar</button>
+            <button type="button" onClick={saveButton}>
+              Continuar
+            </button>
           </div>
-          {errorMessage && <p className="paragraph">{errorMessage}</p>}
           {/* // */}
         </form>
       ) : (

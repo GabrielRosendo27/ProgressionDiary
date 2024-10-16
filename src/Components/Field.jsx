@@ -4,7 +4,6 @@ import Treino from "./Treino";
 import Salvos from "./Salvos";
 
 const Field = () => {
-  const dataAtual = new Date().toLocaleDateString("pt-BR");
   const [currentPage, setCurrentPage] = React.useState(true);
   //
   const treinos = {
