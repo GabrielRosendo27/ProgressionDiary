@@ -1,12 +1,7 @@
 import React from "react";
 
-const Treino = ({ treinos }) => {
-  const [errorMessage, setErrorMessage] = React.useState("");
+const Treino = ({ treinos, saveButton, inExercise, exercises, errorMessage, addExercise, disabledInputs, isAdd }) => {
   const [treino, setTreino] = React.useState(null);
-  const [disabledInputs, setDisabledInputs] = React.useState([false]);
-  const [isAdd, setIsAdd] = React.useState([false]);
-  const dataAtual = new Date().toLocaleDateString("pt-BR");
-  const error = "Preencha todos os campos antes de adicionar um novo exercício.";
 
   const treinoSelecionado = ({ target }) => {
     if (target.value === treinos.a) {
@@ -23,55 +18,6 @@ const Treino = ({ treinos }) => {
     }
   };
 
-  const [exercises, setExercises] = React.useState([{ exercicio: "", kg: "", series: "" }]);
-
-  const inExercise = (index, { target }) => {
-    const { name, value } = target;
-    const updatedExercises = [...exercises];
-    updatedExercises[index][name] = value;
-    setExercises(updatedExercises);
-  };
-
-  const checkFields = () => {
-    return exercises.every((exercise) => exercise.exercicio && exercise.kg && exercise.series);
-  };
-
-  const addExercise = () => {
-    if (!checkFields()) {
-      setErrorMessage(error);
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 2000);
-      return;
-    }
-    setExercises([...exercises, { exercicio: "", kg: "", series: "" }]);
-    setDisabledInputs((prevState) => {
-      const newState = [...prevState];
-      newState[exercises.length - 1] = true; // Desabilita o penúltimo input
-      newState[exercises.length] = false; // Habilita o novo input adicionado
-      return newState;
-    });
-    setIsAdd((prevState) => {
-      const newState = [...prevState];
-      newState[exercises.length - 1] = true;
-      newState[exercises.length] = false;
-      return newState;
-    });
-
-    setErrorMessage("");
-  };
-  const saveButton = () => {
-    if (!checkFields()) {
-      setErrorMessage(error);
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 2000);
-      return;
-    }
-    exercises.map((i, index) => {
-      console.log(i);
-    });
-  };
   return (
     <div>
       {treino ? (
