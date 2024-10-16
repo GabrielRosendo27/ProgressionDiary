@@ -5,7 +5,9 @@ const Treino = ({ treinos }) => {
   const [treino, setTreino] = React.useState(null);
   const [disabledInputs, setDisabledInputs] = React.useState([false]);
   const [isAdd, setIsAdd] = React.useState([false]);
+
   const error = "Preencha todos os campos antes de adicionar um novo exercício.";
+
   const treinoSelecionado = ({ target }) => {
     if (target.value === treinos.a) {
       setTreino(treinos.a);
@@ -55,15 +57,16 @@ const Treino = ({ treinos }) => {
       newState[exercises.length] = false;
       return newState;
     });
+
     setErrorMessage("");
   };
 
   return (
-    <div className="treino-container">
+    <div>
       {treino ? (
         <form>
           {exercises.map((exercise, index) => (
-            <div key={index} className="treino-container">
+            <div key={index} className="treino-container-02">
               <label>Exercício {index + 1}</label>
               <input
                 type="text"
@@ -88,16 +91,17 @@ const Treino = ({ treinos }) => {
               />
             </div>
           ))}
-          <button type="button" onClick={addExercise}>
-            Adicionar Exercício
-          </button>
-          <button type="button">Continuar</button>
-
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          <div className="buttons-treino">
+            <button type="button" onClick={addExercise}>
+              Adicionar Exercício
+            </button>
+            <button type="button">Continuar</button>
+          </div>
+          {errorMessage && <p className="paragraph">{errorMessage}</p>}
           {/* // */}
         </form>
       ) : (
-        <div className="treino-container">
+        <div className="treino-container-01">
           <h3>Escolha o Treino</h3>
           <button value={treinos.a} className="treinoButtons" type="button" onClick={treinoSelecionado}>
             {treinos.a}
